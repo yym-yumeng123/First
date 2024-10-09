@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选择元素和绑定数据</title>
+  </head>
+  <body>
+    <p>Apple</p>
+    <p>Pear</p>
+    <p>Banana</p>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+      // d3.select()：是选择所有指定元素的第一个
+      // d3.selectAll()：是选择指定元素的全部
+      const body = d3.select("body") // 选择body元素
+      const p = body.select("p") // 选择body下的第一个p元素
+      const ps = body.selectAll("p") // 选择body下的所有p元素
+      const svg = body.select("svg") // 选择body下的第一个svg元素
+      const svgs = body.selectAll("svg") // 选择body下的所有svg元素
+
+      // 如何绑定数据
+      // datum() 绑定一个数据到选择集上
+      // data() 绑定一个数组到选择集上, 数据的各项值分别于选择集的个元素对应
+
+      // 假设有一字符串 China，要将此字符串分别与上面三个段落元素绑定
+      const str = "China"
+      ps.datum(str)
+      ps.text(function (d) {
+        return d
+      })
+
+      const arr = ["China", "USA", "UK"]
+      ps.data(arr).text(function (d, i) {
+        return d
+      })
+    </script>
+  </body>
+</html>
