@@ -34,6 +34,16 @@
         })
         .attr("height", rectHeight - 2)
         .attr("fill", "steelblue")
+
+      const dataset1 = [1.2, 2.3, 0.9, 1.5, 3.3]
+
+      const min = d3.min(dataset1)
+      const max = d3.max(dataset1)
+
+      const linearScale = d3.scaleLinear().domain([min, max]).range([0, 300])
+      console.log(linearScale(0.9))
+      console.log(linearScale(2.3))
+      console.log(linearScale(3.3))
     </script>
   </body>
 </html>
