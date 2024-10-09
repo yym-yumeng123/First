@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选择、插入、删除元素</title>
+  </head>
+  <body>
+    <p>Apple</p>
+    <p class="myclass">Pear</p>
+    <p class="myclass">Banana</p>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+      // 选择第一个元素
+      const body = d3.select("body")
+      const p = body.select("p")
+      p.style("color", "red")
+      // 选择所有元素
+      const ps = body.selectAll("p")
+      ps.style("color", "blue")
+      // 选择后两个p 元素
+      const p2 = body.selectAll('.myclass')
+      p2.style("color", "green")
+
+      // 插入元素 在选择集末尾插入元素 append
+      const div = body.append("div")
+      div.text("Hello World")
+
+      const div2 = body.insert("div", "p")
+      div2.text("Hello World")
+
+      // 删除元素
+      p.remove()
+    </script>
+  </body>
+</html>
