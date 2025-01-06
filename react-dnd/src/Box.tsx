@@ -8,11 +8,15 @@ interface BoxProps {
 function Box(props: BoxProps) {
   const ref = useRef<HTMLDivElement>(null)
 
-  const [, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag({
     type: "box",
     item: {
       color: props.color,
     },
+    // 拿到拖拽过程中的状态
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
   })
 
   drag(ref)
@@ -20,8 +24,8 @@ function Box(props: BoxProps) {
   return (
     <div
       ref={ref}
-      className='box'
-      style={{ backgroundColor: props.color }}
+      className={ isDragging ? "box box--dragging" : "box" }
+      style={{ backgroundColor: props.color || 'blue' }}
     ></div>
   )
 }
