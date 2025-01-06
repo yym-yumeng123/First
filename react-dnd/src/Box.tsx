@@ -1,5 +1,6 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useDrag } from "react-dnd"
+import { getEmptyImage } from "react-dnd-html5-backend"
 
 interface BoxProps {
   color: string
@@ -8,7 +9,8 @@ interface BoxProps {
 function Box(props: BoxProps) {
   const ref = useRef<HTMLDivElement>(null)
 
-  const [{ isDragging }, drag] = useDrag({
+  // useDrag 的第三个参数就是处理预览元素的，我们用 getEmptyImage 替换它
+  const [{ isDragging }, drag, deagPreview] = useDrag({
     type: "box",
     item: {
       color: props.color,
@@ -19,7 +21,11 @@ function Box(props: BoxProps) {
     }),
   })
 
-  drag(ref)
+  useEffect(() => {
+    drag(ref)
+    deagPreview(getEmptyImage())
+  }, [])
+
 
   return (
     <div

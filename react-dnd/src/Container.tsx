@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDrop } from "react-dnd"
 import Box from "./Box"
 
@@ -18,7 +18,11 @@ function Container() {
       },
     }
   })
-  drop(ref)
+
+  useEffect(() => {
+    drop(ref)
+  }, [])
+
   return (
     <div ref={ref} className='container'>
       {boxes.map((box, index) => {
