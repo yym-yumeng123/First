@@ -7,22 +7,32 @@ export interface CardItem {
 }
 
 interface CardProps {
-  data: CardItem
+  data: CardItem;
+  index: number;
+  swapIndex: Function
+}
+
+interface DragData {
+  id: number
+  index: number
 }
 
 function Card(props: CardProps) {
-  const { data } = props
+  const { data, index, swapIndex } = props
   const ref = useRef<HTMLDivElement>(null)
 
   const [, drag] = useDrag({
     type: 'card',
-    item: props.data
+    item: {
+      id: data.id,
+      index: index
+    }
   })
 
   const [, drop] = useDrop({
     accept: 'card',
-    drop(item: CardItem) {
-      console.log(item)
+    drop(item: DragData) {
+      swapIndex(index, item.index)
     }
   })
 

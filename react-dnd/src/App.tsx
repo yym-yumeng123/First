@@ -2,7 +2,7 @@ import Box from "./BoxAndContainer/Box"
 import Container from "./BoxAndContainer/Container"
 import DragLayer from "./BoxAndContainer/DragLayer"
 import "./App.css"
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import Card, { CardItem } from "./Card/CardList"
 
 function App() {
@@ -21,6 +21,14 @@ function App() {
       content: "card4",
     },
   ])
+
+  const swapIndex = useCallback((a: number, b: number) => {
+    const tmp = cardList[a]
+    cardList[a] = cardList[b]
+    cardList[b] = tmp
+    setCardList([...cardList])
+  }, [])
+
   return (
     <>
       <div>
@@ -31,8 +39,8 @@ function App() {
         <DragLayer></DragLayer>
       </div>
       <div className='card_wrap'>
-        {cardList.map((item: CardItem) => {
-          return <Card key={item.id} data={item}></Card>
+        {cardList.map((item: CardItem, index: number) => {
+          return <Card key={item.id} data={item} index={index} swapIndex={swapIndex}></Card>
         })}
       </div>
     </>
