@@ -30,3 +30,8 @@
   margin: 10px;
   cursor: move;
 }
+
+.card--dragging {
+  border-style: dashed;
+  background: #fff;
+}
