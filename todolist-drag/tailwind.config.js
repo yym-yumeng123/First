@@ -10,6 +10,8 @@ export default {
       },
       height: {
         600: "600px",
+        200: "200px",
+        100: "100px",
       },
       margin: {
         100: "100px",
