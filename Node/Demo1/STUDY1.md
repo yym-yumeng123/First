@@ -53,3 +53,26 @@ Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。它允许 
 - Buffer: 缓冲区
 - `__filename`: 获取当前文件的文件名 => 绝对路径 => 不在命令行中使用
 - `__dirname`: 获取当前文件的目录名 => 绝对路径 => 不在命令行中使用
+
+### JavaScript 的模块化
+
+- 模块化: 将一个复杂的程序拆分成多个模块, 每个模块都有自己的功能, 模块之间可以相互调用
+  - 每个模块都有自己的作用域, 互不干扰
+  - 可以暴露模块中的内容, 供其他模块使用
+  - 可以导入其他模块的内容, 供自己使用
+- 立即执行函数: 立即执行函数可以创建一个独立的作用域, 互不干扰 (IIFE)
+  - 代码混乱; 每个人写代码的规范不一样, 导致代码难以维护
+- CommonJS 模块化规范 cjs
+  - 每个文件就是一个模块
+  - 导出: `module.exports = value`
+  - 导入: `require(path)`
+  - Node 中实现 CommonJS 模块化规范, 本质是对象引用赋值
+
+```js
+// 导出 exports = {}
+exports.name = "张三"
+exports.age = 18
+
+// 导入
+const { name, age } = require("./module")
+```
