@@ -66,12 +66,20 @@ Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。它允许 
   - 每个文件就是一个模块
   - 导出: `module.exports = value`
   - 导入: `require(path)`
-  - Node 中实现 CommonJS 模块化规范, 本质是对象引用赋值
+  - Node 中实现 CommonJS 模块化规范, 本质是对象引用赋值, 浅拷贝
 
 ```js
 // 导出 exports = {}
 exports.name = "张三"
 exports.age = 18
+
+// Module 是一个类, 每个文件都是一个模块
+// module.exports = exports
+// 会覆盖 exports, 导致 exports 失效, 新建一个对象
+module.exports = {
+  name: "李四",
+  age: 20,
+}
 
 // 导入
 const { name, age } = require("./module")
