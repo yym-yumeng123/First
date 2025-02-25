@@ -31,3 +31,14 @@ Node.js是一个基于Chrome V8引擎的JavaScript运行环境。它允许JavaSc
 - 是一个交互式解释器，可以输入JavaScript代码并立即执行
 - 可以输入多行代码
 - 可以输入多行代码
+
+
+### Node 传递参数
+
+全局对象: process 进程
+
+- process.argv: 获取传递的参数 => 数组 第一个参数是node 第二个参数是文件名 第三个参数是传递的参数
+- process.env: 获取环境变量
+- process.cwd(): 获取当前工作目录
+- process.exit(): 退出程序
+
