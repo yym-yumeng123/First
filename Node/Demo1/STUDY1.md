@@ -84,3 +84,23 @@ module.exports = {
 // 导入
 const { name, age } = require("./module")
 ```
+
+require 查找规则
+
+1. 先看是否是内置模块, 例如: http, fs, path 等
+2. 再看是否是第三方模块, 例如: express, mongoose 等
+3. 再看是否是文件模块, 例如: ./module.js, ../module.js 等
+   1. 如果文件模块没有指定文件后缀, 会按照以下顺序查找
+      - 按照确切的文件名进行查找
+      - 补全 `.js` 后缀进行查找
+      - 补全 `.json` 后缀进行查找
+      - 补全 `.node` 后缀进行查找
+   2. 如果是目录, 会按照以下顺序查找
+   - 查找 `package.json` 的 `main` 属性
+   - 查找 `index.js`
+   - 查找 `index.json`
+   - 查找 `index.node`
+
+- 模块在第一次加载后会被缓存, 所以多次调用 require 不会重复加载模块
+- require 的加载过程是同步的, 所以 require 是一个阻塞操作
+- require 循环引入, 加载顺序为图结构, 图在遍历的过程中采用深度优先遍历
