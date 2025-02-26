@@ -104,3 +104,43 @@ require 查找规则
 - 模块在第一次加载后会被缓存, 所以多次调用 require 不会重复加载模块
 - require 的加载过程是同步的, 所以 require 是一个阻塞操作
 - require 循环引入, 加载顺序为图结构, 图在遍历的过程中采用深度优先遍历
+
+### ES Modules
+
+- ES Modules 是 JavaScript 的模块化规范, 是 ES6 引入的模块化规范
+- 采用 `import` 和 `export` 关键字进行导入和导出
+
+export 和 import 结合使用
+
+```js
+// named export 具名导出
+import { name } from "./foo.js"
+import { name as n } from "./foo.js"
+import * as all from "./foo.js"
+
+// 一般用于第三方库默认导出所有
+export { name } from "./foo.js" // 结合使用
+
+// 默认导出, 一个模块只能有一个默认导出
+export default name from "./foo.js"
+```
+
+
+import 函数 `import()`
+
+- 不能放在代码逻辑中, 必须放在代码的顶层
+- 返回一个 Promise 对象
+- 可以动态导入, 根据条件导入
+
+```js
+import("./foo.js").then((module) => {
+  console.log(module)
+})
+```
+
+#### ES Module 加载过程
+
+- 异步加载: JS引擎在解析过程中, 遇到 import 会异步加载模块, 不会阻塞主线程
+   - 设置了 type=module的 代码,相当于在script标签上加上了 async 属性
+
+
