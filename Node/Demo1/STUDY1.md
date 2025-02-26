@@ -144,3 +144,9 @@ import("./foo.js").then((module) => {
    - 设置了 type=module的 代码,相当于在script标签上加上了 async 属性
 
 
+### Node 对 ES Modules 的支持
+
+- 在 Node 中使用 ES Modules 需要设置 `type` 为 `module`
+- 在 Node 中使用 ES Modules 需要使用 `import` 和 `export` 关键字
+
+
