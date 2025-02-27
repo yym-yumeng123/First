@@ -73,7 +73,11 @@ encoding 参数用于指定文件的编码方式, 有以下几种:
 - `base64`: Base64 编码方式
 
 
-#### 文件流
+#### 文件夹操作
 
-文件流是用于读取和写入文件的流式操作。它可以帮助你以流的方式读取和写入文件。
+- `fs.mkdir(path, [options], callback)`: 创建文件夹
+- `fs.rmdir(path, callback)`: 删除文件夹
+- `fs.readdir(path, callback)`: 读取文件夹
+- `fs.stat(path, callback)`: 获取文件状态
+
 
