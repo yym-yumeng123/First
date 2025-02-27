@@ -24,3 +24,29 @@ path 模块提供了用于处理和转换文件路径的实用工具。它可以
 - `path.basename(path)`: 返回路径的最后一部分
 - `path.dirname(path)`: 返回路径的目录名
 - `path.extname(path)`: 返回路径的扩展名
+
+
+#### 文件系统模块
+
+fs (file system) 模块是 Node.js 提供的用于操作文件的模块, 它提供了一系列的 API, 用于读取和写入文件。
+
+文件系统模块提供了用于读取和写入文件的实用工具。它可以帮助你创建、读取、写入和删除文件。可以在任何操作系统中使用。
+
+#### 文件系统模块的常用方法
+
+- `fs.readFile(path, [options], callback)`: 读取文件
+- `fs.writeFile(path, data, [options], callback)`: 写入文件
+- `fs.appendFile(path, data, [options], callback)`: 追加文件
+- `fs.unlink(path, callback)`: 删除文件
+- `fs.rename(oldPath, newPath, callback)`: 重命名文件
+- `fs.stat(path, callback)`: 获取文件状态
+
+
+大部分的 API 都是异步的, 需要传入回调函数来处理结果。, 大多数会提供三种方式来使用:
+
+- 同步操作文件, 会阻塞代码的执行, 直到操作完成。
+- 异步操作文件, 不会阻塞代码的执行, 会在操作完成后调用回调函数。
+- 流式操作文件, 会以流的方式操作文件, 适合大文件的操作。
+
+
+
