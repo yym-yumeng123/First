@@ -16,3 +16,11 @@ path 模块提供了用于处理和转换文件路径的实用工具。它可以
 - Linux: `/Users/v_yymyyang/Desktop/yym_github/First/Node/Demo2/test.txt`
 
 所以需要使用 path 模块来处理路径, 保证在不同操作系统中都能正常工作。
+
+#### path 模块的常用方法
+
+- `path.resolve([...paths])`: 将多个路径拼接成一个完整的路径
+- `path.join([...paths])`: 将多个路径拼接成一个完整的路径
+- `path.basename(path)`: 返回路径的最后一部分
+- `path.dirname(path)`: 返回路径的目录名
+- `path.extname(path)`: 返回路径的扩展名
