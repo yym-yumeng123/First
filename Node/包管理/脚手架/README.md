@@ -14,9 +14,6 @@
 npm init -y
 ```
 
-
-
-
 ### 在 命令行中 写入 命令
 
 ```js
@@ -36,3 +33,11 @@ npm link
 scaffold
 ```
 
+### 使用工具 commander 解析命令行参数
+
+```js
+const program = require('commander')
+
+program.option('-n, --name <name>', 'your name')
+program.parse(process.argv)
+```
