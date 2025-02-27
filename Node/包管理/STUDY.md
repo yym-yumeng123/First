@@ -118,3 +118,19 @@ npm install express@^4.18.2
       }
     }
 ```
+
+### Yarn
+
+- 是 Facebook 开发的包管理工具
+- 与 npm 兼容
+- 解决了 npm 的很多问题
+- 安装速度比 npm 快
+- 安装更稳定
+
+### npx 工具
+
+- 调用项目中某个模块的指令
+
+```bash
+npx create-react-app my-app
+```
