@@ -17,9 +17,23 @@ npm 的包管理工具是基于 node 的, 所以需要先安装 node 才能使�
 npm init # 初始化项目
 npm init -y # 快速初始化项目
 
-npm install # 安装依赖
-
 npm run xxx # 运行脚本
+
+# 全局安装 一般用于安装工具
+npm install -g xxx # 全局安装
+npm uninstall -g xxx # 全局卸载
+
+# 本地安装
+npm install xxx # 本地安装
+npm uninstall xxx # 本地卸载
+
+# 开发依赖 一般用于安装工具
+npm install -D xxx # 开发依赖
+npm uninstall -D xxx # 开发依赖卸载
+
+# 清除缓存
+npm cache clean -f # 清除缓存
+
 ```
 
 ```json
@@ -80,4 +94,27 @@ npm install express@4.18.2
 
 ```bash
 npm install express@^4.18.2
+```
+
+### npm install 原理
+
+1. package.json 中记录了依赖信息
+2. 根据 package.json 中的依赖信息, 下载对应的包
+3. 下载的包会存放在 node_modules 目录下
+4. 如果 package.json 中记录了依赖信息, 则不会下载
+5. 生成 package-lock.json 文件, 记录了包的版本信息
+
+### package-lock.json 文件
+
+```json
+    "axios": {
+      "version": "1.8.1", // 包的版本
+      "resolved": "https://registry.npmjs.org/axios/-/axios-1.8.1.tgz", // 包的下载地址
+      "integrity": "sha512-NN+fvwH/kV01dYUQ3PTOZns4LWtWhOFCAhQ/pHb88WQ1hNe5V/dvFwc4VJcDL11LT9xSX0QtsR8sWUuyOuOq7g==", // 包的 integrity 值
+      "requires": {
+        "follow-redirects": "^1.15.6",
+        "form-data": "^4.0.0",
+        "proxy-from-env": "^1.1.0"
+      }
+    }
 ```
