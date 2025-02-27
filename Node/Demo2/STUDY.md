@@ -81,3 +81,20 @@ encoding 参数用于指定文件的编码方式, 有以下几种:
 - `fs.stat(path, callback)`: 获取文件状态
 
 
+### events 模块
+
+Node 中的核心API都是基于异步事件驱动的, 所有可能阻塞的API都提供了异步的版本, 事件驱动编程的模型, 事件是编程的中心, 事件驱动是 Node 的精髓。
+
+```js
+const EventEmitter = require("events")
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter()
+
+myEmitter.on("event", () => {
+  console.log("事件触发")
+})
+
+myEmitter.emit("event")
+```
