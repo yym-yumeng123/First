@@ -6,6 +6,18 @@
 // spawn 方法可以创建一个子进程来执行命令
 const { spawn } = require("child_process")
 
+// 安装依赖
+const commandSpawn = (...args) => {
+  return new Promise((resolve, reject) => {
+    const childProcess = spawn(...args)
+    childProcess.stdout.pipe(process.stdout)
+    childProcess.stderr.pipe(process.stderr)
+    childProcess.on("close", () => {
+      resolve()
+    })
+  })
+}
+
 function installDependencies(projectPath) {
   return new Promise((resolve, reject) => {
     const isWindows = process.platform === "win32" ? "npm.cmd" : "npm";
@@ -30,6 +42,7 @@ function installDependencies(projectPath) {
 
 
 module.exports = {
+  commandSpawn,
   installDependencies,
 }
 

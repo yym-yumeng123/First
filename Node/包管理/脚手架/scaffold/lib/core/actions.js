@@ -1,7 +1,7 @@
-const { promisify } = require('util')
+const { promisify } = require("util")
 const path = require("path")
 const { vueRepo, directRepo } = require("../config/repo-config")
-const { installDependencies } = require("../utils/terminal")
+const { commandSpawn } = require("../utils/terminal")
 
 const download = promisify(require("download-git-repo"))
 const createProject = async (project, others) => {
@@ -10,14 +10,16 @@ const createProject = async (project, others) => {
   const projectDir = path.join(process.cwd(), project)
   // 2. clone 项目
   await download(directRepo, projectDir, { clone: true })
-  console.log(projectDir, 'projectDir')
+  console.log(projectDir, "projectDir")
   // 3. 安装依赖
-  await installDependencies(projectDir);
+  // await installDependencies(projectDir);
+  await commandSpawn("npm.cmd", ["install"], { cwd: projectDir })
 
   // 4. npm run dev
+  await commandSpawn("npm.cmd", ["run", "start"], { cwd: projectDir })
 
   // 5. 打开浏览器
-  // await commandSpawn("start", [`http://localhost:8080`], { cwd: `./${projectDir}` });
+  // open 模块
 }
 
 module.exports = {
