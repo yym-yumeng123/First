@@ -7,6 +7,7 @@
 - `chalk`: 美化输出
 - `ora`: 显示 loading 效果
 - `fs-extra`: 文件操作
+- `download-git-repo`: 下载 git 仓库
 
 ## 1. 初始化项目
 
