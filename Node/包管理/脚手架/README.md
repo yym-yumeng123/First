@@ -37,8 +37,26 @@ scaffold
 ### 使用工具 commander 解析命令行参数
 
 ```js
-const program = require('commander')
+const program = require("commander")
 
-program.option('-n, --name <name>', 'your name')
+program.option("-n, --name <name>", "your name")
 program.parse(process.argv)
+```
+
+### 使用 download-git-repo 下载 git 仓库
+
+```js
+const download = require('download-git-repo')
+
+const vueRepo = "github:yym-yumeng123/ReactUI"
+const directRepo = "direct:https://github.com/yym-yumeng123/ReactUI.git"
+download(vueRepo, projectDir
+// direct 要添加属性 { clone: true }
+download(directRepo, projectDir, { clone: true }, (err) => {
+    if (err) {
+      console.error(err)
+    } else {
+      console.log("项目创建成功")
+    }
+  })
 ```
