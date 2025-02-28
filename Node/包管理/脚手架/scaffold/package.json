@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "bin": {
-    "scaffold": "./index.js"
+    "vite": "./index.js"
   },
   "keywords": [],
   "author": "",
