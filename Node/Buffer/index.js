@@ -8,6 +8,8 @@ console.log(buffer1)
 // 创建 Buffer 的第2种方式
 const buffer2 = Buffer.alloc(10)
 
+buffer2[0] = 255
+
 console.log(buffer2)
 
 // 创建 Buffer 的第3种方式

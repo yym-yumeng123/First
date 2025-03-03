@@ -33,3 +33,25 @@ console.log(buf2)
 console.log(buf2.toString('utf-8'))
 console.log(buf2.toString('utf-16le'))
 ```
+
+### Buffer 的其它创建
+
+```js
+// 创建一个 Buffer 对象
+// alloc 创建一个指定大小的 Buffer 对象, 10 个字节 10个 00
+const buf3 = Buffer.alloc(10)
+console.log(buf3)
+
+// 修改 buffer 中的内容
+buf3[0] = 255
+buf3[1] = 0x88
+console.log(buf3)
+
+// allocUnsafe 创建一个指定大小的 Buffer 对象, 10 个字节
+const buf4 = Buffer.allocUnsafe(10)
+console.log(buf4)
+
+// 修改 buffer 中的内容
+buf4[0] = 255
+console.log(buf4)
+```
