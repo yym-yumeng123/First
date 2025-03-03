@@ -19,3 +19,17 @@
 
 
 ### Buffer 和 字符串
+
+```js
+// 创建一个 Buffer 对象
+const buf = Buffer.from("hello")
+console.log(buf)
+
+// 创建一个 Buffer 对象
+const buf2 = Buffer.from("你好")
+console.log(buf2)
+
+// 将 Buffer 转换为字符串
+console.log(buf2.toString('utf-8'))
+console.log(buf2.toString('utf-16le'))
+```
