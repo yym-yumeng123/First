@@ -1,0 +1,14 @@
+// 普通路由加载
+
+const <%= data.name %> = () => import('@/views/<%= data.name %>.vue')
+
+export default {
+  path: '/<%= data.name %>',
+  component: <%= data.name %>,
+  name: '<%= data.name %>',
+  meta: {
+    title: '<%= data.name %>',
+    icon: '<%= data.name %>',
+  },
+}
+

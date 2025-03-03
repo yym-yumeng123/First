@@ -1,0 +1,33 @@
+<template>
+  <div class="<%= data.lowerName %>">
+    <h1>{{ msg }}</h1>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: '<%= data.name %>', // 组件名称
+    props: {
+      msg: {
+        type: String,
+        default: 'Hello World',
+      },
+    },
+    data() {
+      return {
+        msg: "<%= data.name %>",
+      }
+    },
+    methods: {
+      handleClick() {
+        this.msg = "Hello World"
+      },
+    },
+    mounted() {
+    },
+  }
+</script>
+
+<style scoped lang="less">
+
+</style>

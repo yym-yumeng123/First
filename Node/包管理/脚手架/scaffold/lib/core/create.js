@@ -1,5 +1,5 @@
 const { program } = require("commander")
-const { createProject } = require("./actions")
+const { createProject, createComponent } = require("./actions")
 const createCommands = () => {
   program
     // [others...] 表示可选参数
@@ -10,6 +10,13 @@ const createCommands = () => {
       // others 是可选参数 代表其他参数
       // 获取命令行参数 项目名称
       createProject(project, others)
+    })
+
+  // 添加 命令, 扩展命令
+  program.command("addcpn <name>")
+    .description("add vue component, 例: vite addcpn HelloWorld -d src/components")
+    .action((name, dest) => {
+      createComponent(name, dest)
     })
 }
 
