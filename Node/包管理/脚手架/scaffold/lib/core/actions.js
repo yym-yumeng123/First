@@ -2,6 +2,7 @@ const { promisify } = require("util")
 const path = require("path")
 const { vueRepo, directRepo } = require("../config/repo-config")
 const { commandSpawn } = require("../utils/terminal")
+const { compile, writeToFile } = require("../utils/utils")
 
 const download = promisify(require("download-git-repo"))
 
@@ -29,6 +30,8 @@ const createProject = async (project, others) => {
 const createComponent = async (name, dest) => {
   console.log("添加组件", name, dest)
   // 增加组件, 先有组件模板 .ejs 文件
+  const result = await compile("vue-component.ejs", { name, lowerName: name.toLowerCase() })
+  console.log(result, "result")
 }
 
 module.exports = {
