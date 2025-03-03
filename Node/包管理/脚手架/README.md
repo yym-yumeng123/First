@@ -60,3 +60,11 @@ download(directRepo, projectDir, { clone: true }, (err) => {
     }
   })
 ```
+
+
+### 脚手架上传 npm
+
+```bash
+npm login
+npm publish
+```
