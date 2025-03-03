@@ -15,8 +15,8 @@ const createCommands = () => {
   // 添加 命令, 扩展命令
   program.command("addcpn <name>")
     .description("add vue component, 例: vite addcpn HelloWorld -d src/components")
-    .action((name, dest) => {
-      createComponent(name, dest)
+    .action((name) => {
+      createComponent(name, program.dest || 'src/components')
     })
 }
 

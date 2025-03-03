@@ -29,9 +29,12 @@ const createProject = async (project, others) => {
 // 添加组件的 命令
 const createComponent = async (name, dest) => {
   console.log("添加组件", name, dest)
-  // 增加组件, 先有组件模板 .ejs 文件
+  // 增加组件, 先有组件模板 .ejs 文件, 编译 ejs 模板
   const result = await compile("vue-component.ejs", { name, lowerName: name.toLowerCase() })
   console.log(result, "result")
+  // 将 编译后的结果 写入文件
+  const targetPath = path.resolve(dest, `${name}.vue`)
+  await writeToFile(targetPath, result)
 }
 
 module.exports = {

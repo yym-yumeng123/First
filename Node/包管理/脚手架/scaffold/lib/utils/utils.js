@@ -1,5 +1,6 @@
-const ejs = require("ejs")
 const path = require("path")
+const fs = require("fs")
+const ejs = require("ejs")
 
 const compile = (templateName, data) => {
   const templatePath = path.resolve(__dirname, `../templates/${templateName}`)
@@ -12,7 +13,7 @@ const compile = (templateName, data) => {
 }
 
 const writeToFile = (path, content) => {
-  fs.writeFileSync(path, content)
+  return fs.promises.writeFile(path, content)
 }
 
 module.exports = {
