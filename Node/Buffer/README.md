@@ -55,3 +55,5 @@ console.log(buf4)
 buf4[0] = 255
 console.log(buf4)
 ```
+
+### Buffer 和 文件操作
