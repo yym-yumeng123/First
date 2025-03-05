@@ -21,3 +21,28 @@ listen函数 有三个参数
     - `0.0.0.0`: 监听 IPV4 上所有的地址, 再根据端口找到不同的应用程序
     - 我们监听 `0.0.0.0` 时, 在同一个网段下的主机, 通过ip地址是可以访问的
   - 回调函数, 服务器启动成功的回调函数
+
+#### request 对象
+
+封装了客户端给服务端的所有信息
+
+- req.url: 请求url
+- req.method: 请求方式
+- req.headers: 请求头信息
+
+```js
+const url = require('url')
+if(req.url === '/login') {
+  res.end('登录')
+} else if(req.url === '/register') {
+  res.end('注册')
+} else {
+  res.end('404')
+}
+
+// 获取请求参数
+const urlObj = url.parse(req.url, true)
+const query = urlObj.query
+```
+
+

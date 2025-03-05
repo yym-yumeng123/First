@@ -2,6 +2,10 @@ const http = require('http')
 
 // 创建一个web 服务器
 const server = http.createServer((req, res) => {
+  console.log(req.url)
+  console.log(req.method)
+  console.log(req.headers)
+
   res.end('hello World')
 })
 
