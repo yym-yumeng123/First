@@ -1,5 +1,6 @@
 const express = require("express")
 
+// 创建应用对象, 类似 http.createServer()
 const app = express()
 
 // 创建路由

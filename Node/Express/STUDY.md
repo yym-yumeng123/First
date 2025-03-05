@@ -4,4 +4,70 @@
 2. 使用框架, 只需要关注业务逻辑, 其他的都交给框架处理
 3. 框架: express
 
+### 什么是 Express
+
+Express 是一个基于 Node.js 平台的极速、开放、极简的 Web 开发框架。
+
+### 基本使用
+
+1. 安装
+
+```bash
+npm install express
+```
+
+2. 创建应用对象
+
+```js
+const express = require("express")
+const app = express()
+```
+
+3. 创建路由
+
+```js
+app.get("/", (req, res) => {
+  res.send("Hello World")
+})
+```
+
+4. 启动服务器
+
+```js
+app.listen(3000, () => {
+  console.log("服务器启动成功")
+})
+```
+
+### 中间件
+
+Express 是一个路由和中间件的 Web 框架。
+
+- Express 应用程序本质上是一系列中间件函数的调用
+
+中间件是 Express 中的一个重要概念, 它是一个函数, 可以访问请求对象(req), 响应对象(res), 以及应用对象(app)。
+
+1. 执行任何代码
+2. 更改请求和响应对象
+3. 结束请求-响应周期
+4. 调用堆栈中的下一个中间件 (放进 Stack 中)
+
+如果中间件功能没有结束请求-响应周期, 必须调用 next() 方法将请求传递给下一个中间件, 否则请求将被挂起。
+
+#### 应用中间件
+
+```js
+// 1. app.use()
+app.use(function (req, res, next) {
+  console.log("中间件")
+  next()
+})
+
+// 2. app.get()
+app.get("/", function (req, res, next) {
+  console.log("中间件")
+  next()
+})
+```
+
 
