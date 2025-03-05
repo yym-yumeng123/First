@@ -46,3 +46,12 @@ const query = urlObj.query
 ```
 
 
+
+
+### 文件上传
+
+文件上传的原理: 
+
+1. 客户端通过 `form` 表单提交数据, 数据会被编码为 `application/x-www-form-urlencoded` 格式
+2. 服务端通过 `req.body` 获取数据
+3. 服务端将数据写入到文件中
