@@ -71,3 +71,28 @@ app.get("/", function (req, res, next) {
 ```
 
 
+### 常用中间件
+
+1. 解析请求体
+
+```js
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+```
+2. multer
+
+```js
+const multer = require("multer")
+const upload = multer({ dest: "./uploads/" })
+
+app.use(upload.any())
+```
+
+3. morgan
+
+- 记录请求日志
+```js
+const morgan = require("morgan")
+
+app.use(morgan("dev"))
+```
