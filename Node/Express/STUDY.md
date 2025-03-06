@@ -122,3 +122,14 @@ router.get("/", (req, res) => {
 
 module.exports = router
 ```
+
+### 静态资源
+
+- 静态资源是指在服务器中存储的文件, 如图片, 视频, 音频, 文档等。
+- 使用 express.static() 方法来设置静态资源目录。
+
+```js
+// 设置静态资源目录
+app.use(express.static("public"))
+```
+
