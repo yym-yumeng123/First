@@ -31,3 +31,55 @@
 - 非关系型数据库的典型代表: MongoDB, Redis, Memcached
 - NoSQL 基于 key-value 键值对存储, 不需要经过SQL解析, 性能非常高。
 
+
+### 什么是MySQL
+
+- MySQL是一个关系型数据库管理系统, 由瑞典MySQL AB 公司开发, 属于Oracle旗下产品。
+- MySQL是最流行的关系型数据库管理系统之一, 在WEB应用方面, MySQL是最好的RDBMS(Relational Database Management System, 关系型数据库管理系统)应用软件之一。
+
+
+
+### MySQL
+
+```bash
+mysql -u root -p
+
+show databases; # 查看所有数据库
+# information_schema 信息数据库, 包含 数据库, 表, 列, 权限, 用户 等元数据
+# mysql 用于存储管理者的用户信息, 权限信息, 日志信息等
+# performance_schema 性能数据库, 资源消耗相关的信息
+# sys 相当于简易版的 performance_schema
+
+# 创建数据库
+create database mydb;
+
+# 查看数据库
+show databases;
+
+# 当前数据库
+select database();
+
+# 使用数据库
+use mydb;
+
+# 查看当前数据库中的所有表
+show tables;
+
+# 创建表
+create table mytable (
+    id int primary key,
+    name varchar(20) not null
+);
+
+# 添加数据
+insert into mytable (id, name) values (1, '张三');
+
+# 查询数据
+select * from mytable;
+
+# 更新数据
+update mytable set name = '李四' where id = 1;
+
+```
+
+
