@@ -96,3 +96,13 @@ const morgan = require("morgan")
 
 app.use(morgan("dev"))
 ```
+
+
+### 客户端发送请求的方式
+
+- get 请求的 URL 的 params 参数 `/user/:id`
+- get 请求的 URL 的 query 参数 `/user?id=1`
+- post 请求的 body 的 json 格式 `/user`
+- post 请求的 form-data 参数 `/user`
+- post 请求的 body 的 x-www-form-urlencoded 格式 `/user`
+
