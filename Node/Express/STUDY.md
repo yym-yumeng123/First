@@ -108,3 +108,17 @@ app.use(morgan("dev"))
 
 
 ### 路由
+
+路由是 Express 中的一个重要概念, 它是一个函数, 可以访问请求对象(req), 响应对象(res), 以及应用对象(app)。
+
+可以使用 express.Router() 创建一个路由实例, 然后使用该实例来定义路由。
+
+```js
+const router = express.Router()
+
+router.get("/", (req, res) => {
+  res.send("Hello World")
+})
+
+module.exports = router
+```
