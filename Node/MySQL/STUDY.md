@@ -207,6 +207,60 @@ INSERT INTO mytable (id, name) VALUES (1, '张三'), (2, '李四');
 # 插入查询结果
 INSERT INTO mytable (id, name) SELECT id, name FROM mytable2;
 
+# 删除数据
+DELETE FROM mytable WHERE id = 1;
+
+# 更新数据
+UPDATE mytable SET name = '王五' WHERE id = 1;
+
+# 查询数据 select 关键字
+# select 用于从一个或者多个表检索选中的行
+SELECT * FROM mytable;
+
+# 查询指定字段
+SELECT id, name FROM mytable;
+
+# 查询指定字段, 并给字段起别名
+SELECT id AS id, name AS name FROM mytable;
+
+# where 查询条件
+SELECT * FROM mytable WHERE id = 1;
+SELECT * FROM mytable WHERE id > 1;
+SELECT * FROM mytable WHERE id < 1;
+SELECT * FROM mytable WHERE id >= 1;
+SELECT * FROM mytable WHERE id <= 1;
+SELECT * FROM mytable WHERE id != 1;
+
+# 逻辑运算符
+SELECT * FROM mytable WHERE id = 1 AND name = '张三';
+SELECT * FROM mytable WHERE id = 1 OR name = '张三';
+SELECT * FROM mytable WHERE NOT id = 1;
+
+# 模糊查询
+# % 表示任意字符
+# _ 表示一个字符
+SELECT * FROM mytable WHERE name LIKE '%张%';
+SELECT * FROM mytable WHERE name LIKE '_张%';
+
+# IN 用于指定一个或多个值
+SELECT * FROM mytable WHERE id IN (1, 2, 3);
+
+# 范围查询
+SELECT * FROM mytable WHERE id BETWEEN 1 AND 3;
+
+# 空值查询
+SELECT * FROM mytable WHERE name IS NULL;
+
+# 非空查询
+SELECT * FROM mytable WHERE name IS NOT NULL;
+
+# 排序 order by 关键字
+SELECT * FROM mytable ORDER BY id ASC;
+SELECT * FROM mytable ORDER BY id DESC, name ASC;
+
+# 分页查询
+SELECT * FROM mytable LIMIT 10 OFFSET 0;
+SELECT * FROM mytable LIMIT 10, 10;
 ```
 
 ### 数据类型
