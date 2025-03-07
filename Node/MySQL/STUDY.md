@@ -172,6 +172,27 @@ DROP TABLE mytable;
 # 如果表存在, 则删除表
 DROP TABLE IF EXISTS mytable;
 
+# 修改表名字
+ALTER TABLE mytable RENAME TO mytable2;
+
+# 添加字段
+ALTER TABLE mytable ADD COLUMN age INT;
+
+# 修改字段类型
+ALTER TABLE mytable MODIFY COLUMN age INT;
+
+# 修改字段名
+ALTER TABLE mytable CHANGE COLUMN age age INT;
+
+# 删除字段
+ALTER TABLE mytable DROP COLUMN age;
+
+
+# 根据一个表结构创建一个新表
+CREATE TABLE mytable2 LIKE mytable;
+
+# 根据表中的所有内容, 创建一个新表
+CREATE TABLE mytable2 AS SELECT * FROM mytable;
 ```
 
 ### 数据类型
