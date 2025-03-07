@@ -263,6 +263,53 @@ SELECT * FROM mytable LIMIT 10 OFFSET 0;
 SELECT * FROM mytable LIMIT 10, 10;
 ```
 
+### 聚合函数
+
+聚合函数默认把表中的所有行进行计算, 并返回一个值
+
+- 聚合函数用于对一组值进行计算, 并返回一个值
+- 聚合函数通常与 GROUP BY 一起使用
+- 聚合函数通常与 HAVING 一起使用
+
+```sql
+# 计算表中所有行数
+SELECT COUNT(*) FROM mytable;
+
+# 求和
+SELECT SUM(id) FROM mytable;
+SELECT SUM(id) FROM mytable WHERE id > 1;
+
+# 求平均值
+SELECT AVG(id) FROM mytable;
+
+# 求最大值
+SELECT MAX(id) FROM mytable;
+
+# 求最小值
+SELECT MIN(id) FROM mytable;
+
+# 去重
+SELECT COUNT(DISTINCT price) FROM mytable;
+
+# 分组后计算  得到的列 是分组后的列
+SELECT COUNT(*) FROM mytable GROUP BY id;
+
+# 分组后求和
+SELECT id, SUM(id) FROM mytable GROUP BY id;
+
+# 分组后求平均值
+SELECT id, AVG(id) FROM mytable GROUP BY id;
+
+# 分组求最大值
+SELECT id, MAX(id) FROM mytable GROUP BY id;
+
+# 分组求最小值
+SELECT id, MIN(id) FROM mytable GROUP BY id;
+
+# Having 关键字 对分组后的数据进行过滤
+SELECT id, SUM(id) FROM mytable GROUP BY id HAVING SUM(id) > 1;
+```
+
 ### 数据类型
 
 - 数值类型
