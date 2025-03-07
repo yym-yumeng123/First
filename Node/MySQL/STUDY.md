@@ -356,3 +356,45 @@ SELECT id, SUM(id) FROM mytable GROUP BY id HAVING SUM(id) > 1;
   - 外键约束用于限制引用表中的数据, 保证引用表中的数据完整性和一致性
 - 检查约束 CHECK (检查约束)
   - 检查约束用于限制插入数据的条件, 保证插入数据的有效性
+
+
+### 多表查询
+
+外键(foreign key)约束: 用于限制引用表中的数据, 保证引用表中的数据完整性和一致性
+
+- 主表(父表): 被引用的表
+- 从表(子表): 引用主表的表
+- 主表中的数据发生变化, 从表中的数据也会发生变化
+
+多表查询: 用于连接两个或多个表, 并返回一个结果集
+
+- 连接查询
+  - 连接查询用于连接两个或多个表, 并返回一个结果集
+  - 连接查询分为内连接和外连接
+  - 内连接用于连接两个或多个表, 并返回一个结果集
+  - 外连接用于连接两个或多个表, 并返回一个结果集
+
+
+```sql
+# 添加一个 外键约束
+ALTER TABLE mytable1 ADD CONSTRAINT fk_mytable1_mytable2 FOREIGN KEY (xxx_id) REFERENCES mytable2 (id);
+
+# 修改外键 action
+ALTER TABLE mytable1 ADD CONSTRAINT fk_mytable1_mytable2 FOREIGN KEY (xxx_id) REFERENCES mytable2 (id) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# SQL JOIN 关键字
+# 内连接
+SELECT * FROM mytable1 INNER JOIN mytable2 ON mytable1.id = mytable2.id;
+
+# 左连接 以左表为主 
+SELECT * FROM mytable1 LEFT JOIN mytable2 ON mytable1.id = mytable2.id;
+SELECT * FROM mytable1 LEFT JOIN mytable2 ON mytable1.id = mytable2.id WHERE mytable2.id IS NULL;
+
+
+# 右连接 以右表为主
+SELECT * FROM mytable1 RIGHT JOIN mytable2 ON mytable1.id = mytable2.id;
+SELECT * FROM mytable1 RIGHT JOIN mytable2 ON mytable1.id = mytable2.id WHERE mytable1.id IS NULL;
+
+# 全连接
+SELECT * FROM mytable1 FULL JOIN mytable2 ON mytable1.id = mytable2.id;
+```
