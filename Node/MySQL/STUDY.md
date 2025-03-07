@@ -195,6 +195,20 @@ CREATE TABLE mytable2 LIKE mytable;
 CREATE TABLE mytable2 AS SELECT * FROM mytable;
 ```
 
+### 表的增删改查
+
+```sql
+# 插入数据
+INSERT INTO mytable (id, name) VALUES (1, '张三');
+
+# 插入多条数据
+INSERT INTO mytable (id, name) VALUES (1, '张三'), (2, '李四');
+
+# 插入查询结果
+INSERT INTO mytable (id, name) SELECT id, name FROM mytable2;
+
+```
+
 ### 数据类型
 
 - 数值类型
