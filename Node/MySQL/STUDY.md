@@ -146,3 +146,58 @@ ALTER DATABASE mydb CHARACTER SET utf8mb4;
 # 查看数据库编码
 SHOW VARIABLES LIKE 'character_set_database';
 ```
+
+### 表操作
+
+```sql
+# 查看所有表
+SHOW TABLES;
+
+# 查看表结构
+DESCRIBE mytable;
+DESC mytable; # 缩写
+
+# 查看表的创建语句
+SHOW CREATE TABLE mytable;
+
+# 创建表
+CREATE TABLE IF NOT EXISTS mytable (
+    id INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL
+);
+
+# 删除表
+DROP TABLE mytable;
+
+# 如果表存在, 则删除表
+DROP TABLE IF EXISTS mytable;
+
+```
+
+### 数据类型
+
+- 数值类型
+  - 整数类型: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT (1字节, 2字节, 3字节, 4字节, 8字节)
+  - 浮点数类型: FLOAT, DOUBLE (4字节, 8字节)
+  - 定点数类型: DECIMAL (10字节)
+- 日期和时间类型
+  - YEAR (1字节) 年份 以 YYYY 表示
+  - DATE (4字节) 日期 以 YYYY-MM-DD 表示
+  - TIME (3字节) 时间 以 HH:MM:SS 表示
+  - DATETIME (8字节) 日期时间 以 YYYY-MM-DD HH:MM:SS 表示
+  - TIMESTAMP (4字节) 时间戳 以 YYYY-MM-DD HH:MM:SS 表示
+- 字符串类型
+  - CHAR (定长字符串, 最大长度255字节), 被查询时会自动删除末尾的空格
+  - VARCHAR (可变长度字符串, 最大长度65535字节), 被查询时不会删除末尾的空格
+  - TEXT (最大长度65535字节)
+- 二进制类型
+  - BINARY (定长二进制字符串, 最大长度255字节)
+  - VARBINARY (可变长度二进制字符串, 最大长度65535字节)
+  - BLOB (最大长度65535字节)
+- 布尔类型
+  - BOOLEAN (布尔值, 最大长度1字节)
+- 枚举类型
+  - ENUM (枚举值, 最大长度255字节)
+- 集合类型
+  - SET (集合值, 最大长度255字节)
+
