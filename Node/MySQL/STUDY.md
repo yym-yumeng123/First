@@ -71,15 +71,78 @@ create table mytable (
     name varchar(20) not null
 );
 
-# 添加数据
-insert into mytable (id, name) values (1, '张三');
-
 # 查询数据
 select * from mytable;
 
+# 添加数据
+insert into mytable (id, name) values (1, '张三');
+
+
 # 更新数据
 update mytable set name = '李四' where id = 1;
-
 ```
 
 
+### GUI 工具
+
+- 可视化工具: Navicat, DBeaver, DataGrip, SQLyog, HeidiSQL, Sequel Pro
+
+
+### 认识 SQL 语句
+
+和数据库沟通的语言, 这个语言就是 SQL (Structured Query Language, 结构化查询语言);
+
+SQL 语句常用规范:
+
+- 关键字大写 CREATE
+- 表名和列名小写
+- 使用缩进和换行提高可读性
+
+SQL 语句分类:
+
+- DDL (Data Definition Language, 数据定义语言)
+  - 对数据库, 表, 列, 索引等进行创建, 修改, 删除等操作
+  - 关键字: CREATE, ALTER, DROP, TRUNCATE
+- DML (Data Manipulation Language, 数据操作语言)
+  - 对数据进行增删改查操作
+  - 关键字: INSERT, DELETE, UPDATE, SELECT
+- DQL (Data Query Language, 数据查询语言)
+  - 对数据进行查询操作
+  - 关键字: SELECT
+- DCL (Data Control Language, 数据控制语言)
+  - 对数据进行控制操作
+  - 关键字: GRANT, REVOKE
+
+### 数据库操作
+
+```sql
+# 创建数据库
+CREATE DATABASE mydb;
+
+# 查看所有数据库
+SHOW DATABASES;
+
+# 选择某一个数据库
+USE mydb;
+
+# 查看当前在使用的数据库
+SELECT DATABASE();
+
+# 创建数据库
+CREATE DATABASE mydb;
+
+# 如果数据库不存在, 则创建数据库
+CREATE DATABASE IF NOT EXISTS mydb;
+
+# 删除数据库
+DROP DATABASE mydb;
+
+# 如果数据库存在, 则删除数据库
+DROP DATABASE IF EXISTS mydb;
+
+# 修改数据库编码
+ALTER DATABASE mydb CHARACTER SET utf8mb4;
+
+# 查看数据库编码
+SHOW VARIABLES LIKE 'character_set_database';
+```
