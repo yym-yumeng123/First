@@ -560,3 +560,11 @@ const stmt = await pool.promise().prepare(sql)
 // 执行预编译语句
 const [rows, fields] = await stmt.execute([1])
 ```
+
+
+### 认识 ORM
+
+- ORM (Object-Relational Mapping): 对象关系映射
+- 将数据库中的表映射为对象
+- 将对象的操作映射为数据库的操作
+- 常见的 ORM 框架: TypeORM, Sequelize, Knex.js, Prisma
