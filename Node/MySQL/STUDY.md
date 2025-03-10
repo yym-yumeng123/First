@@ -454,11 +454,43 @@ CREATE TABLE IF NOT EXISTS student_course (
     student_id INT NOT NULL,
     course_id INT NOT NULL,
     FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (course_id) REFERENCES courses (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (course_id) REFERENCES courses (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    -- PRIMARY KEY (student_id, course_id)
+
 );
 
 
 # 学生选课
 INSERT INTO student_course (student_id, course_id) VALUES (1, 1);
 INSERT INTO student_course (student_id, course_id) VALUES (2, 2);
+
+# 查询所有有选课的学生, 选择了哪些课程
+SELECT stu.name, c.name FROM students as stu
+JOIN student_course AS ssc ON stu.id = ssc.student_id 
+JOIN courses AS c ON ssc.course_id = c.id;
+
+# 查询所有学生选课情况
+SELECT stu.name, c.name FROM students as stu
+LEFT JOIN student_course AS ssc ON stu.id = ssc.student_id 
+LEFT JOIN courses AS c ON ssc.course_id = c.id;
+
+# 查询哪些学生没有选课
+SELECT stu.name FROM students as stu
+LEFT JOIN student_course AS ssc ON stu.id = ssc.student_id 
+LEFT JOIN courses AS c ON ssc.course_id = c.id
+WHERE c.id IS NULL;
+
+# 查询哪些课程没有学生选课
+SELECT c.name FROM courses as c
+LEFT JOIN student_course AS ssc ON c.id = ssc.course_id 
+LEFT JOIN students AS stu ON ssc.student_id = stu.id
+WHERE stu.id IS NULL; 
+
+# 某个学生选了哪些课程
+SELECT c.name FROM courses as c
+JOIN student_course AS ssc ON c.id = ssc.course_id 
+JOIN students AS stu ON ssc.student_id = stu.id
+WHERE stu.id = 1;
+
+
 ```
