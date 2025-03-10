@@ -20,10 +20,9 @@ class UserService {
     // await pool.execute(createUser)
     // user 存储到数据库
     try {
-      const result = await pool.execute(insertUser, [username, password])
-      console.log(result, 'service')
-      // 确保result是数组再解构
-      return Array.isArray(result) ? result[0] : result
+      const [results, fields] = await pool.execute(insertUser, [username, password])
+      console.log(results, fields, 'service')
+      return results
     } catch (error) {
       console.error('创建用户错误:', error)
       throw error
