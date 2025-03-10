@@ -508,3 +508,29 @@ JOIN student_course AS ssc ON stu.id = ssc.student_id
 JOIN courses AS c ON ssc.course_id = c.id
 GROUP BY stu.id;
 ```
+
+### 认识 mysql2
+
+- mysql: 最早的Node 连接 mysql 的驱动, 但是存在一些问题, 比如不支持 Promise, 不支持流式查询等
+- mysql2: 是 mysql 的官方驱动, 解决了 mysql 的一些问题, 比如支持 Promise, 支持流式查询等
+  - 支持 Promise
+  - 更快/好的性能
+
+```js
+// 安装
+npm install mysql2
+
+// 导入
+const mysql = require('mysql2');
+
+// 创建连接
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: '123456',
+  database: 'mydb'
+});
+
+// 使用连接池
+const connection = await pool.promise().query('SELECT * FROM users');
+```
