@@ -12,6 +12,7 @@
     "koa": "^2.16.0"
   },
   "devDependencies": {
+    "dotenv": "^16.4.7",
     "nodemon": "^3.1.9"
   }
 }
