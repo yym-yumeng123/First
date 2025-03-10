@@ -542,6 +542,7 @@ const connection = await pool.promise().query('SELECT * FROM users');
 
 - mysql.createPool
   - 创建一个连接池, 管理多个数据库链接
+  - 创建多个连接, 并管理连接的生命周期
 
 
 - Prepared Statements (预编译语句)
