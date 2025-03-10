@@ -9,14 +9,13 @@
 - 数据冗余, 浪费存储空间
 - 很难数据共享
 
-
 ### 什么是数据库
 
 数据库是按照数据结构来组织, 存储和管理数据的仓库。
 
 分为: 关系型数据库和非关系型数据库
 
-关系型数据库: 
+关系型数据库:
 
 - 关系型数据库是基于关系模型来组织数据的数据库
 - 关系模型是指数据之间存在的一种联系
@@ -29,15 +28,12 @@
 - 非关系型数据库是基于键值对来组织数据的数据库
 - 键值对是指数据之间存在的一种联系
 - 非关系型数据库的典型代表: MongoDB, Redis, Memcached
-- NoSQL 基于 key-value 键值对存储, 不需要经过SQL解析, 性能非常高。
+- NoSQL 基于 key-value 键值对存储, 不需要经过 SQL 解析, 性能非常高。
 
+### 什么是 MySQL
 
-### 什么是MySQL
-
-- MySQL是一个关系型数据库管理系统, 由瑞典MySQL AB 公司开发, 属于Oracle旗下产品。
-- MySQL是最流行的关系型数据库管理系统之一, 在WEB应用方面, MySQL是最好的RDBMS(Relational Database Management System, 关系型数据库管理系统)应用软件之一。
-
-
+- MySQL 是一个关系型数据库管理系统, 由瑞典 MySQL AB 公司开发, 属于 Oracle 旗下产品。
+- MySQL 是最流行的关系型数据库管理系统之一, 在 WEB 应用方面, MySQL 是最好的 RDBMS(Relational Database Management System, 关系型数据库管理系统)应用软件之一。
 
 ### MySQL
 
@@ -82,11 +78,9 @@ insert into mytable (id, name) values (1, '张三');
 update mytable set name = '李四' where id = 1;
 ```
 
-
 ### GUI 工具
 
 - 可视化工具: Navicat, DBeaver, DataGrip, SQLyog, HeidiSQL, Sequel Pro
-
 
 ### 认识 SQL 语句
 
@@ -313,30 +307,29 @@ SELECT id, SUM(id) FROM mytable GROUP BY id HAVING SUM(id) > 1;
 ### 数据类型
 
 - 数值类型
-  - 整数类型: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT (1字节, 2字节, 3字节, 4字节, 8字节)
-  - 浮点数类型: FLOAT, DOUBLE (4字节, 8字节)
-  - 定点数类型: DECIMAL (10字节)
+  - 整数类型: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT (1 字节, 2 字节, 3 字节, 4 字节, 8 字节)
+  - 浮点数类型: FLOAT, DOUBLE (4 字节, 8 字节)
+  - 定点数类型: DECIMAL (10 字节)
 - 日期和时间类型
-  - YEAR (1字节) 年份 以 YYYY 表示
-  - DATE (4字节) 日期 以 YYYY-MM-DD 表示
-  - TIME (3字节) 时间 以 HH:MM:SS 表示
-  - DATETIME (8字节) 日期时间 以 YYYY-MM-DD HH:MM:SS 表示
-  - TIMESTAMP (4字节) 时间戳 以 YYYY-MM-DD HH:MM:SS 表示
+  - YEAR (1 字节) 年份 以 YYYY 表示
+  - DATE (4 字节) 日期 以 YYYY-MM-DD 表示
+  - TIME (3 字节) 时间 以 HH:MM:SS 表示
+  - DATETIME (8 字节) 日期时间 以 YYYY-MM-DD HH:MM:SS 表示
+  - TIMESTAMP (4 字节) 时间戳 以 YYYY-MM-DD HH:MM:SS 表示
 - 字符串类型
-  - CHAR (定长字符串, 最大长度255字节), 被查询时会自动删除末尾的空格
-  - VARCHAR (可变长度字符串, 最大长度65535字节), 被查询时不会删除末尾的空格
-  - TEXT (最大长度65535字节)
+  - CHAR (定长字符串, 最大长度 255 字节), 被查询时会自动删除末尾的空格
+  - VARCHAR (可变长度字符串, 最大长度 65535 字节), 被查询时不会删除末尾的空格
+  - TEXT (最大长度 65535 字节)
 - 二进制类型
-  - BINARY (定长二进制字符串, 最大长度255字节)
-  - VARBINARY (可变长度二进制字符串, 最大长度65535字节)
-  - BLOB (最大长度65535字节)
+  - BINARY (定长二进制字符串, 最大长度 255 字节)
+  - VARBINARY (可变长度二进制字符串, 最大长度 65535 字节)
+  - BLOB (最大长度 65535 字节)
 - 布尔类型
-  - BOOLEAN (布尔值, 最大长度1字节)
+  - BOOLEAN (布尔值, 最大长度 1 字节)
 - 枚举类型
-  - ENUM (枚举值, 最大长度255字节)
+  - ENUM (枚举值, 最大长度 255 字节)
 - 集合类型
-  - SET (集合值, 最大长度255字节)
-
+  - SET (集合值, 最大长度 255 字节)
 
 ### 表约束
 
@@ -347,7 +340,7 @@ SELECT id, SUM(id) FROM mytable GROUP BY id HAVING SUM(id) > 1;
 - 唯一约束 UNIQUE (唯一约束, 唯一且非空)
   - 一张表中, 只能有一个唯一约束, 唯一约束可以由一个或多个字段组成, 唯一约束可以自动递增 (手机号, 身份证号, 邮箱...)
 - 自动递增约束 AUTO_INCREMENT (自动递增约束)
-  - 例如用户id, 订单id, 商品id等
+  - 例如用户 id, 订单 id, 商品 id 等
 - 非空约束 NOT NULL (非空约束)
   - 不能为空
 - 默认约束 DEFAULT (默认约束)
@@ -356,7 +349,6 @@ SELECT id, SUM(id) FROM mytable GROUP BY id HAVING SUM(id) > 1;
   - 外键约束用于限制引用表中的数据, 保证引用表中的数据完整性和一致性
 - 检查约束 CHECK (检查约束)
   - 检查约束用于限制插入数据的条件, 保证插入数据的有效性
-
 
 ### 多表查询
 
@@ -374,7 +366,6 @@ SELECT id, SUM(id) FROM mytable GROUP BY id HAVING SUM(id) > 1;
   - 内连接用于连接两个或多个表, 并返回一个结果集
   - 外连接用于连接两个或多个表, 并返回一个结果集
 
-
 ```sql
 # 添加一个 外键约束
 ALTER TABLE mytable1 ADD CONSTRAINT fk_mytable1_mytable2 FOREIGN KEY (xxx_id) REFERENCES mytable2 (id);
@@ -386,7 +377,7 @@ ALTER TABLE mytable1 ADD CONSTRAINT fk_mytable1_mytable2 FOREIGN KEY (xxx_id) RE
 # 内连接
 SELECT * FROM mytable1 INNER JOIN mytable2 ON mytable1.id = mytable2.id;
 
-# 左连接 以左表为主 
+# 左连接 以左表为主
 SELECT * FROM mytable1 LEFT JOIN mytable2 ON mytable1.id = mytable2.id;
 SELECT * FROM mytable1 LEFT JOIN mytable2 ON mytable1.id = mytable2.id WHERE mytable2.id IS NULL;
 
@@ -404,7 +395,6 @@ SELECT * FROM mytable1 FULL JOIN mytable2 ON mytable1.id = mytable2.id;
 - 一对一关系数据: 一个主表只能有一个从表, 一个从表只能有一个主表
 - 一对多关系数据: 一个主表可以有多个从表, 一个从表只能有一个主表
 - 多对多关系数据: 一个主表可以有多个从表, 一个从表可以有多个主表
-
 
 ```sql
 # 一对一关系数据
@@ -460,37 +450,61 @@ CREATE TABLE IF NOT EXISTS student_course (
 );
 
 
-# 学生选课
+-- 学生选课
 INSERT INTO student_course (student_id, course_id) VALUES (1, 1);
 INSERT INTO student_course (student_id, course_id) VALUES (2, 2);
 
-# 查询所有有选课的学生, 选择了哪些课程
+-- 查询所有有选课的学生, 选择了哪些课程
 SELECT stu.name, c.name FROM students as stu
-JOIN student_course AS ssc ON stu.id = ssc.student_id 
+JOIN student_course AS ssc ON stu.id = ssc.student_id
 JOIN courses AS c ON ssc.course_id = c.id;
 
-# 查询所有学生选课情况
+-- 查询所有学生选课情况
 SELECT stu.name, c.name FROM students as stu
-LEFT JOIN student_course AS ssc ON stu.id = ssc.student_id 
+LEFT JOIN student_course AS ssc ON stu.id = ssc.student_id
 LEFT JOIN courses AS c ON ssc.course_id = c.id;
 
-# 查询哪些学生没有选课
+-- 查询哪些学生没有选课
 SELECT stu.name FROM students as stu
-LEFT JOIN student_course AS ssc ON stu.id = ssc.student_id 
+LEFT JOIN student_course AS ssc ON stu.id = ssc.student_id
 LEFT JOIN courses AS c ON ssc.course_id = c.id
 WHERE c.id IS NULL;
 
-# 查询哪些课程没有学生选课
+-- 查询哪些课程没有学生选课
 SELECT c.name FROM courses as c
-LEFT JOIN student_course AS ssc ON c.id = ssc.course_id 
+LEFT JOIN student_course AS ssc ON c.id = ssc.course_id
 LEFT JOIN students AS stu ON ssc.student_id = stu.id
-WHERE stu.id IS NULL; 
+WHERE stu.id IS NULL;
 
-# 某个学生选了哪些课程
+-- 某个学生选了哪些课程
 SELECT c.name FROM courses as c
-JOIN student_course AS ssc ON c.id = ssc.course_id 
+JOIN student_course AS ssc ON c.id = ssc.course_id
 JOIN students AS stu ON ssc.student_id = stu.id
 WHERE stu.id = 1;
+```
 
+### 数据转为数组对象
 
+```sql
+-- 将联合查询数据转为对象 (一对多)
+SELECT product.id as id, product.name as name,
+JSON.OBJECT(
+    'id', category.id,
+    'name', category.name
+) as category
+FROM product
+JOIN category ON product.category_id = category.id;
+
+-- 查询到的多条数据, 组织成对象, 放入一个数组
+SELECT stu.id as id, stu.name as name,
+JSON_ARRAYAGG(
+    JSON_OBJECT(
+        'id', c.id,
+        'name', c.name
+    )
+) as courses
+FROM students as stu
+JOIN student_course AS ssc ON stu.id = ssc.student_id
+JOIN courses AS c ON ssc.course_id = c.id
+GROUP BY stu.id;
 ```
