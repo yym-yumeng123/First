@@ -542,3 +542,20 @@ const connection = await pool.promise().query('SELECT * FROM users');
 
 - mysql.createPool
   - 创建一个连接池, 管理多个数据库链接
+
+
+- Prepared Statements (预编译语句)
+  - 预编译语句可以提高性能, 减少网络开销
+
+```js
+// 创建一个预编译语句 ? 占位符
+const sql = `
+  SELECT * FROM users where id = ?
+`
+
+// 创建一个预编译语句
+const stmt = await pool.promise().prepare(sql)
+
+// 执行预编译语句
+const [rows, fields] = await stmt.execute([1])
+```

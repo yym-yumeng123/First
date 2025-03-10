@@ -13,7 +13,14 @@ const sql = `
 `
 
 // 执行查询
-pool.query(sql, [1], (err, rows, fields) => {
+// pool.query(sql, [1], (err, rows, fields) => {
+//   if (err) throw err
+//   console.log(rows)
+// })
+
+
+// 创建一个预编译语句
+pool.execute(sql, [1], (err, rows, fields) => {
   if (err) throw err
   console.log(rows)
 })
