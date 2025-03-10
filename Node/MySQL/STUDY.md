@@ -534,3 +534,11 @@ const pool = mysql.createPool({
 // 使用连接池
 const connection = await pool.promise().query('SELECT * FROM users');
 ```
+
+- mysql.createConnection
+  - 创建一个连接
+  - 不支持连接池
+  - 适合小规模应用
+
+- mysql.createPool
+  - 创建一个连接池, 管理多个数据库链接
