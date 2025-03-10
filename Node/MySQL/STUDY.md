@@ -426,3 +426,39 @@ SELECT * FROM mytable1 FULL JOIN mytable2 ON mytable1.id = mytable2.id;
 # 中间表: 用户id, 商品id
 
 ```
+
+```sql
+### 多对多
+# 学生 和 课程
+# 学生表: 学生id, 学生姓名, 学生年龄, 学生性别
+# 课程表: 课程id, 课程名称, 课程价格, 课程描述
+# 中间表: 学生id, 课程id
+
+CREATE TABLE IF NOT EXISTS students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    age INT NOT NULL,
+    gender VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS courses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    description VARCHAR(200) NOT NULL
+);
+
+# 多对多会建立中间表
+CREATE TABLE IF NOT EXISTS student_course (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    course_id INT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+# 学生选课
+INSERT INTO student_course (student_id, course_id) VALUES (1, 1);
+INSERT INTO student_course (student_id, course_id) VALUES (2, 2);
+```
