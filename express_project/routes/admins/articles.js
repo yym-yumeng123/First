@@ -1,13 +1,17 @@
 const express = require("express")
 const router = express.Router()
 const { Article } = require("../../models")
+const { Op } = require("sequelize") // 操作符
 
 // 获取文章列表
 router.get("/", async (req, res) => {
   try {
+    const { title } = req.query
     const articles = await Article.findAll({
       // 按id降序排序, 可能多个字段排序
       order: [["id", "DESC"]],
+      // title 存在时, 按title模糊查询
+      where: title ? { title: { [Op.like]: `%${title}%` } } : undefined,
     })
     res.json({
       status: true,
