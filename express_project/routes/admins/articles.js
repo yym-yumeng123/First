@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const { Article } = require("../../models")
 const { Op } = require("sequelize") // 操作符
-
+const { NotFoundError, success, failure } = require("../../utils/response")
 // 获取文章列表
 router.get("/", async (req, res) => {
   try {
@@ -16,47 +16,28 @@ router.get("/", async (req, res) => {
       offset: parseInt(offset),
       limit: parseInt(limit),
     })
-    res.json({
-      status: true,
-      message: "获取文章列表成功",
-      data: {
+    success(
+      res,
+      {
         articles: articles.rows,
         total: articles.count,
         currentPage: parseInt(page),
         totalPages: Math.ceil(articles.count / parseInt(limit)),
       },
-    })
+      "获取文章列表成功"
+    )
   } catch (error) {
-    res.status(500).json({
-      status: false,
-      message: "获取文章列表失败",
-      errors: [error.message],
-    })
+    failure(res, error)
   }
 })
 
 // 查询文章详情
 router.get("/:id", async (req, res) => {
-  const { id } = req.params
   try {
-    const article = await Article.findByPk(id)
-    if (!article) {
-      return res.status(404).json({
-        status: false,
-        message: "文章不存在",
-      })
-    }
-    res.json({
-      status: true,
-      message: "获取文章详情成功",
-      data: article,
-    })
+    const article = await getArticle(req)
+    success(res, article, "获取文章详情成功")
   } catch (error) {
-    res.status(500).json({
-      status: false,
-      message: "获取文章详情失败",
-      errors: [error.message],
-    })
+    failure(res, error)
   }
 })
 
@@ -65,79 +46,45 @@ router.post("/", async (req, res) => {
   const { title, content } = req.body
   try {
     const article = await Article.create({ title, content })
-    res.status(201).json({
-      status: true,
-      message: "创建文章成功",
-      data: article,
-    })
+    success(res, article, "创建文章成功", 201)
   } catch (error) {
-    // 处理验证错误
-    if (error.name === "SequelizeValidationError") {
-      return res.status(400).json({
-        status: false,
-        message: "创建文章失败",
-        errors: error.errors.map((err) => err.message),
-      })
-    }
-    // 处理其他错误
-    res.status(500).json({
-      status: false,
-      message: "创建文章失败",
-      errors: [error.message],
-    })
+    failure(res, error)
   }
 })
 
 // 删除文章
 router.delete("/:id", async (req, res) => {
-  const { id } = req.params
   try {
-    const article = await Article.findByPk(id)
-    if (!article) {
-      return res.status(404).json({
-        status: false,
-        message: "文章不存在",
-      })
-    }
+    const article = await getArticle(req)
     await article.destroy()
-    res.json({
-      status: true,
-      message: "删除文章成功",
-    })
+    success(res, null, "删除文章成功")
   } catch (error) {
-    res.status(500).json({
-      status: false,
-      message: "删除文章失败",
-      errors: [error.message],
-    })
+    failure(res, error)
   }
 })
 
 // 更新文章
 router.put("/:id", async (req, res) => {
   try {
-    const { id } = req.params
+    const article = await getArticle(req)
     const { title, content } = req.body
-    const article = await Article.findByPk(id)
-    if (!article) {
-      return res.status(404).json({
-        status: false,
-        message: "文章不存在",
-      })
-    }
     await article.update({ title, content })
-    res.json({
-      status: true,
-      message: "更新文章成功",
-      data: article,
-    })
+    success(res, article, "更新文章成功")
   } catch (error) {
-    res.status(500).json({
-      status: false,
-      message: "更新文章失败",
-      errors: [error.message],
-    })
+    failure(res, error)
   }
 })
+
+/**
+ * 公共方法: 查询当前文章
+ */
+async function getArticle(req) {
+  const { id } = req.params
+  const article = await Article.findByPk(id)
+  if (!article) {
+    throw new NotFoundError("文章不存在")
+  }
+  return article
+}
 
 module.exports = router
