@@ -64,12 +64,6 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const { title, content } = req.body
   try {
-    if (!title || !content) {
-      return res.status(400).json({
-        status: false,
-        message: "标题和内容不能为空",
-      })
-    }
     const article = await Article.create({ title, content })
     res.status(201).json({
       status: true,
@@ -77,6 +71,15 @@ router.post("/", async (req, res) => {
       data: article,
     })
   } catch (error) {
+    // 处理验证错误
+    if (error.name === "SequelizeValidationError") {
+      return res.status(400).json({
+        status: false,
+        message: "创建文章失败",
+        errors: error.errors.map((err) => err.message),
+      })
+    }
+    // 处理其他错误
     res.status(500).json({
       status: false,
       message: "创建文章失败",
