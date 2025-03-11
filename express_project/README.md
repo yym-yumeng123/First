@@ -72,13 +72,13 @@ npx sequelize-cli db:migrate
 1. 建立模型和迁移文件
 
 ```bash
-npx sequelize model:generate --name Article --attributes title:string,content:text
+npx sequelize-cli model:generate --name Article --attributes title:string,content:text
 ```
 
 2. 运行迁移
 
 ```bash
-npx sequelize db:migrate
+npx sequelize-cli db:migrate
 ```
 
 3. 建立种子 (生成大量数据)

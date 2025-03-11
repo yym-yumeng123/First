@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "sequelize": "npx sequelize"
+    "sequelize": "npx sequelize-cli"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
