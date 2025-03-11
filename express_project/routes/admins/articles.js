@@ -73,4 +73,56 @@ router.post("/", async (req, res) => {
   }
 })
 
+// 删除文章
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params
+  try {
+    const article = await Article.findByPk(id)
+    if (!article) {
+      return res.status(404).json({
+        status: false,
+        message: "文章不存在",
+      })
+    }
+    await article.destroy()
+    res.json({
+      status: true,
+      message: "删除文章成功",
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: "删除文章失败",
+      errors: [error.message],
+    })
+  }
+})
+
+// 更新文章
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params
+    const { title, content } = req.body
+    const article = await Article.findByPk(id)
+    if (!article) {
+      return res.status(404).json({
+        status: false,
+        message: "文章不存在",
+      })
+    }
+    await article.update({ title, content })
+    res.json({
+      status: true,
+      message: "更新文章成功",
+      data: article,
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: "更新文章失败",
+      errors: [error.message],
+    })
+  }
+})
+
 module.exports = router
