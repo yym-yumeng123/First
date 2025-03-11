@@ -46,3 +46,10 @@ const pool = mysql.createPool({
 });
 ```
 
+### Sequelize
+
+```bash
+npm install sequelize sequelize-cli
+```
+
+
