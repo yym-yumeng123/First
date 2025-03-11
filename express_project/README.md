@@ -50,6 +50,50 @@ const pool = mysql.createPool({
 
 ```bash
 npm install sequelize sequelize-cli
+
+# 初始化
+npx sequelize-cli init
 ```
+
+### 数据库迁移
+
+```bash
+npx sequelize-cli db:migrate
+```
+
+- config/config.json: 数据库配置
+- models/index.js: 数据库模型
+- migrations: 数据库迁移
+- seeders: 数据库种子
+
+
+### 步骤
+
+1. 建立模型和迁移文件
+
+```bash
+npx sequelize model:generate --name Article --attributes title:string,content:text
+```
+
+2. 运行迁移
+
+```bash
+npx sequelize db:migrate
+```
+
+3. 建立种子 (生成大量数据)
+
+```bash
+npx sequelize-cli seed:generate --name article
+```
+
+4. 运行种子
+
+```bash
+npx sequelize-cli db:seed --seed 20250311025625-article
+```
+
+
+
 
 
