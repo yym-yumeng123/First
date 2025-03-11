@@ -48,5 +48,29 @@ router.get("/:id", async (req, res) => {
   }
 })
 
+// 创建文章
+router.post("/", async (req, res) => {
+  const { title, content } = req.body
+  try {
+    if (!title || !content) {
+      return res.status(400).json({
+        status: false,
+        message: "标题和内容不能为空",
+      })
+    }
+    const article = await Article.create({ title, content })
+    res.status(201).json({
+      status: true,
+      message: "创建文章成功",
+      data: article,
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: "创建文章失败",
+      errors: [error.message],
+    })
+  }
+})
 
 module.exports = router
