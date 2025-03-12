@@ -74,6 +74,9 @@ npx sequelize-cli db:migrate
 ```bash
 npx sequelize model:generate --name Category --attributes name:string,rank:integer
 npx sequelize-cli model:generate --name Article --attributes title:string,content:text
+
+# 新增字段
+npx sequelize-cli migration:create --name add-column-to-article
 ```
 
 2. 运行迁移
