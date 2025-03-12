@@ -72,6 +72,7 @@ npx sequelize-cli db:migrate
 1. 建立模型和迁移文件
 
 ```bash
+npx sequelize model:generate --name Category --attributes name:string,rank:integer
 npx sequelize-cli model:generate --name Article --attributes title:string,content:text
 ```
 
@@ -151,3 +152,8 @@ npx sequelize-cli db:seed --seed 20250311025625-article
    3. courseId 课程id 关联课程表: interger, not null, index
    4. createdAt 创建时间: datetime, not null
    5. updatedAt 更新时间: datetime, not null
+
+
+### MySQL Workbench 
+
+workbench 是 MySQL 的图形化管理工具, 可以方便的创建数据库, 表, 视图, 存储过程等.
