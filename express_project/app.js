@@ -8,6 +8,7 @@ const usersRouter = require('./routes/users');
 
 // 后台管理
 const adminArticlesRouter = require('./routes/admins/articles');
+const adminCategoriesRouter = require('./routes/admins/categories');
 
 const app = express();
 
@@ -25,5 +26,5 @@ app.use('/users', usersRouter);
 
 // 后台管理
 app.use('/admin/articles', adminArticlesRouter);
-
+app.use('/admin/categories', adminCategoriesRouter);
 module.exports = app;
