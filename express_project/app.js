@@ -10,6 +10,7 @@ const usersRouter = require("./routes/users")
 const adminArticlesRouter = require("./routes/admins/articles")
 const adminCategoriesRouter = require("./routes/admins/categories")
 const adminSettingsRouter = require("./routes/admins/settings")
+const adminUsersRouter = require("./routes/admins/users")
 
 const app = express()
 
@@ -29,5 +30,5 @@ app.use("/users", usersRouter)
 app.use("/admin/articles", adminArticlesRouter)
 app.use("/admin/categories", adminCategoriesRouter)
 app.use("/admin/settings", adminSettingsRouter)
-
+app.use("/admin/users", adminUsersRouter)
 module.exports = app

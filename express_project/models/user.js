@@ -18,11 +18,37 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     nickname: DataTypes.STRING,
-    sex: DataTypes.TINYINT,
+    sex: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "性别不能为空",
+        },
+        notNull: {
+          msg: "性别不能为空",
+        },
+        isIn: [[0, 1, 2]],
+      },
+    },
     company: DataTypes.STRING,
     introduce: DataTypes.TEXT,
-    role: DataTypes.TINYINT,
-    avatar: DataTypes.STRING,
+    role: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "角色不能为空",
+        },
+        notNull: {
+          msg: "角色不能为空",
+        },
+        isIn: {
+          args: [[0, 100]],
+          msg: "角色值必须是0, 100",
+        },
+      },
+    },
   }, {
     sequelize,
     modelName: 'User',
