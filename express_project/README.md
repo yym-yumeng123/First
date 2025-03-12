@@ -97,3 +97,57 @@ npx sequelize-cli db:seed --seed 20250311025625-article
 
 
 
+### 企业级项目开发流程
+
+1. 编写需求文档
+2. 原型与UI设计
+3. 确定数据库的表, 字段,以及接口地址和数据
+4. 同时进行: 前端 mock 数据, 后端接口开发
+5. 前后端联调
+6. 测试 部署
+
+
+
+### 规划数据库
+
+1. 分类表 Categoies
+   1. id 主键
+   2. name 分类名称
+   3. sort 排序
+   4. createdAt 创建时间
+   5. updatedAt 更新时间
+2. 课程表 Courses
+   1. id 主键: interger, not null, auto increment
+   2. categoryId 分类id 关联分类表: interger, not null, index
+   3. userId 用户id 关联用户表: interger, not null, index
+   4. name 课程名称: varchar(255), not null
+   5. image 封面: varchar(255)
+   6. recommend 推荐: boolean, not null, default false
+   7. introductory 是否入门课程: boolean, not null, default false
+   8. content 课程内容: text
+   9. likesCount 点赞数: interger, not null, default 0
+   10. chaptersCount 章节数: interger, not null, default 0
+3. 章节表 Chapters
+   1. id 主键: interger, not null, auto increment
+   2. courseId 课程id 关联课程表: interger, not null, index
+   3. title 章节名称: varchar(255), not null
+   4. content 章节内容: text
+   5. video 视频地址: varchar(255)
+   6. rank 章节排序: interger, not null, default 0
+4. 用户表 Users
+   1. id 主键: interger, not null, auto increment
+   2. username 用户名: varchar(255), not null, unique
+   3. email 邮箱: varchar(255), not null, unique
+   4. password 密码: varchar(255), not null
+   5. nickname 昵称: varchar(255), not null
+   6. avatar 头像: varchar(255)
+   7. sex 性别: tinyint, not null, default 0
+   8. company 公司: varchar(255)
+   9. introduce 个人介绍: text
+   10. role 角色: tinyint, not null, default 0
+5. 点赞表 Likes
+   1. id 主键: interger, not null, auto increment
+   2. userId 用户id 关联用户表: interger, not null, index
+   3. courseId 课程id 关联课程表: interger, not null, index
+   4. createdAt 创建时间: datetime, not null
+   5. updatedAt 更新时间: datetime, not null
