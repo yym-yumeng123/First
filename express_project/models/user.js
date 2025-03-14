@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require("bcryptjs")
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -16,7 +17,16 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     email: DataTypes.STRING,
     username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      set(val) {
+        if (val.length >= 6 && val.length <= 45) {
+          this.setDataValue("password", bcrypt.hashSync(val, 10))
+        } else {
+          throw new Error("密码长度必须在6-45个字符之间")
+        }
+      }
+    },
     nickname: DataTypes.STRING,
     sex: {
       type: DataTypes.TINYINT,
