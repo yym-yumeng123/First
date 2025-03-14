@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { Category } = require("../../models")
+const { Category, Course } = require("../../models")
 const { Op } = require("sequelize") // 操作符
 const { NotFoundError, success, failure } = require("../../utils/response")
 // 获取分类列表
@@ -56,6 +56,10 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const category = await getCategory(req)
+    // 判断是否存在课程
+    if (category.courses.length > 0) {
+      throw new BadRequestError("分类下存在课程, 不能删除")
+    }
     await category.destroy()
     success(res, null, "删除分类成功")
   } catch (error) {
@@ -80,7 +84,14 @@ router.put("/:id", async (req, res) => {
  */
 async function getCategory(req) {
   const { id } = req.params
-  const category = await Category.findByPk(id)
+  const category = await Category.findByPk(id, {
+    include: [
+      {
+        model: Course,
+        as: "courses",
+      },
+    ],
+  })
   if (!category) {
     throw new NotFoundError("分类不存在")
   }
