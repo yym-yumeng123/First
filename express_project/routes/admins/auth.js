@@ -9,6 +9,7 @@ const {
 } = require("../../utils/errors")
 const { success, failure } = require("../../utils/responses")
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 /**
  * 管理员登录
@@ -39,10 +40,13 @@ router.post("/sign_in", async (req, res) => {
       throw new UnauthorizedError("密码不正确")
     }
     // 验证是否是管理员
-    if (!user.role !== 100) {
-      throw new UnauthorizedError("您不是管理员")
-    }
-    success(res, { token: "123456" }, '登录成功')
+    // if (!user.role !== 100) {
+    //   throw new UnauthorizedError("您不是管理员")
+    // }
+    const token = jwt.sign({ userId: user.id }, process.env.SECRET, {
+      expiresIn: "30d",
+    })
+    success(res, { token: token }, "登录成功")
   } catch (error) {
     failure(res, error)
   }
