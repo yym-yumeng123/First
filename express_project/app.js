@@ -6,7 +6,9 @@ const adminAuth = require("./middlewares/admin-auth")
 
 require("dotenv").config()
 
+// 前台
 const indexRouter = require("./routes/index")
+const catrgoriesRouter = require("./routes/categories")
 const usersRouter = require("./routes/users")
 
 // 后台管理
@@ -32,6 +34,7 @@ app.use(express.static(path.join(__dirname, "public")))
 
 app.use("/", indexRouter)
 app.use("/users", usersRouter)
+app.use("/categories", catrgoriesRouter)
 
 // 后台管理
 app.use("/admin/articles", adminAuth, adminArticlesRouter)
