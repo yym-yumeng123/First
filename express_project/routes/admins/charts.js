@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const { User } = require("../../models")
-const { success, failure } = require("../../utils/response")
+const { success, failure } = require("../../utils/responses")
 
 /**
  * 统计用户性别

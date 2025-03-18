@@ -160,3 +160,14 @@ npx sequelize-cli db:seed --seed 20250311025625-article
 ### MySQL Workbench 
 
 workbench 是 MySQL 的图形化管理工具, 可以方便的创建数据库, 表, 视图, 存储过程等.
+
+
+### jwt token 登录
+
+1. 用户发送邮箱和密码给服务器
+2. 基础验证
+3. 接收 login , 不接收 email
+4. 通过 login 查询数据库, 判断用户存在
+5. 验证密码是否正确
+6. 验证是不是管理员
+7. 使用 jwt 生成 token
