@@ -3,6 +3,7 @@ const path = require("path")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
 const adminAuth = require("./middlewares/admin-auth")
+const cors = require("cors")
 
 require("dotenv").config()
 
@@ -31,6 +32,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 // 静态文件
 app.use(express.static(path.join(__dirname, "public")))
+
+// 跨域
+app.use(cors())
 
 app.use("/", indexRouter)
 app.use("/users", usersRouter)
