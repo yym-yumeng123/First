@@ -13,6 +13,7 @@ const adminSettingsRouter = require("./routes/admins/settings")
 const adminUsersRouter = require("./routes/admins/users")
 const adminCoursesRouter = require("./routes/admins/courses")
 const adminChaptersRouter = require("./routes/admins/chapters")
+const adminChartRouter = require("./routes/admins/charts")
 
 const app = express()
 
@@ -35,4 +36,5 @@ app.use("/admin/settings", adminSettingsRouter)
 app.use("/admin/users", adminUsersRouter)
 app.use("/admin/courses", adminCoursesRouter)
 app.use("/admin/chapters", adminChaptersRouter)
+app.use("/admin/chart", adminChartRouter)
 module.exports = app
