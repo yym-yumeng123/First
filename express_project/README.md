@@ -189,7 +189,7 @@ workbench 是 MySQL 的图形化管理工具, 可以方便的创建数据库, �
    1. 初始化默认数据
    2. 测试数据
 
-### 上线
+### 上线前
 
 1. 配置环境变量
 
@@ -212,3 +212,71 @@ PORT=3000
 }
 ```
 
+### 服务器和域名
+
+1. 服务器
+   1. 阿里云
+   2. 腾讯云
+   3. 华为云
+   4. 亚马逊云
+   5. 谷歌云
+   6. 微软云
+   7. 甲骨文云
+
+DEB系: Ubuntu, Debian
+
+2. 域名 (最好同一厂商购买)
+   1. 国际域名: .com, .net
+   2. 国内域名: .cn
+   3. 省钱: .top .xyz
+
+3. 连接服务器
+
+```bash
+# 登录
+ssh root@123.57.178.100
+
+# 更新
+apt update
+apt upgrade -y
+
+# 退出
+exit
+
+# 秘钥登录
+ssh-keygen
+
+```
+
+4. 宝塔面板
+
+安装宝塔面板, 简化linux操作
+
+```bash
+yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
+```
+
+在宝塔面板中安装 node.js nginx mysql
+
+```bash
+yum install -y nodejs
+yum install -y nginx
+yum install -y mysql
+```
+
+
+5. 上传项目代码 & 配置数据库
+
+```bash
+# 上传项目代码
+scp -r /path/to/project root@123.57.178.100:/var/www/html
+
+# 配置数据库
+mysql -u root -p
+```
+
+6. 使用 pm2 启动项目
+
+域名解析
+添加站点 => 自己的项目
+ssl 证书 => 宝塔面板
