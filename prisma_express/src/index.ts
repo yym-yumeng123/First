@@ -96,8 +96,8 @@ app.get("/feed", async (req, res) => {
     where: {
       published: true,
     },
-    skip: parseInt(skip as string),
-    take: parseInt(take as string),
+    skip: parseInt(skip as string) || 0,
+    take: parseInt(take as string) || 10,
   })
   res.json(posts)
 })
