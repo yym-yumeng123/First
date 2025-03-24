@@ -26,3 +26,12 @@ npm install
 ## Workshop
 
 You can find all the info for following the workshop [here](https://www.notion.so/prismaio/A-Practical-Introduction-to-Prisma-2021-ccf00a066ef4432caeb03da179e38302).
+
+
+### 学习
+
+```bash
+npx prisma migrate dev --name init
+
+npx prisma studio
+```
