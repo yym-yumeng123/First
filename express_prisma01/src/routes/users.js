@@ -1,5 +1,6 @@
 const express = require("express")
 const Joi = require("joi")
+const bcrypt = require("bcrypt")
 const router = express.Router()
 const prisma = require("../lib/prisma")
 
@@ -50,15 +51,22 @@ const checkUserUniqueness = async (req, res, next) => {
 router.post("/", validateUserData, checkUserUniqueness, async (req, res) => {
   try {
     const { email, username, password } = req.body
-    
+
+    // 加密密码
+    const saltRounds = 10
+    const hashedPassword = await bcrypt.hash(password, saltRounds)
+
     const user = await prisma.user.create({
       data: {
         email,
         username,
-        password,
+        password: hashedPassword,
       },
     })
-    res.status(201).json(user)
+
+    // 不返回密码
+    const { password: _, ...userWithoutPassword } = user
+    res.status(201).json(userWithoutPassword)
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
