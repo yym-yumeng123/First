@@ -1,8 +1,8 @@
 const express = require("express")
 const Joi = require("joi")
-const bcrypt = require("bcrypt")
 const router = express.Router()
 const prisma = require("../lib/prisma")
+const { registerUser } = require("../controllers/userController")
 
 // 用户验证模式
 const userValidationSchema = Joi.object({
@@ -47,29 +47,7 @@ const checkUserUniqueness = async (req, res, next) => {
   }
 }
 
-// 注册用户
-router.post("/", validateUserData, checkUserUniqueness, async (req, res) => {
-  try {
-    const { email, username, password } = req.body
-
-    // 加密密码
-    const saltRounds = 10
-    const hashedPassword = await bcrypt.hash(password, saltRounds)
-
-    const user = await prisma.user.create({
-      data: {
-        email,
-        username,
-        password: hashedPassword,
-      },
-    })
-
-    // 不返回密码
-    const { password: _, ...userWithoutPassword } = user
-    res.status(201).json(userWithoutPassword)
-  } catch (error) {
-    res.status(400).json({ error: error.message })
-  }
-})
+// 注册用户路由
+router.post("/", validateUserData, checkUserUniqueness, registerUser)
 
 module.exports = router
