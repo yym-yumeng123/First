@@ -49,7 +49,6 @@ const getLedgers = async (req, res) => {
 const updateLedger = async (req, res) => {
   try {
     const { id } = req.params
-    console.log(id, '----id', typeof id)
     const { name, description } = req.body
     const ledger = await prisma.ledger.update({
       where: {
@@ -72,8 +71,28 @@ const updateLedger = async (req, res) => {
   }
 }
 
+const deleteLedger = async (req, res) => {
+  try {
+    const { id } = req.params
+    await prisma.ledger.delete({
+      where: {
+        id: Number(id),
+      },
+    })
+    res.json({
+      message: "账本删除成功",
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "账本删除失败",
+      error: error.message,
+    })
+  }
+}
+
 module.exports = {
   createLedger,
   getLedgers,
   updateLedger,
+  deleteLedger,
 }
