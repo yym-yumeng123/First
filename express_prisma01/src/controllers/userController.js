@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
     const { password: _, ...userWithoutPassword } = user
     res.status(201).json({
       message: "注册成功",
-      user: userWithoutPassword,
+      data: userWithoutPassword,
     })
   } catch (error) {
     res.status(400).json({ error: error.message })
@@ -63,29 +63,20 @@ const loginUser = async (req, res) => {
   }
 }
 
-// // 获取用户信息控制器
-// const getUserProfile = async (req, res) => {
-//   try {
-//     const { id } = req.params
-
-//     const user = await prisma.user.findUnique({
-//       where: { id: Number(id) },
-//     })
-
-//     if (!user) {
-//       return res.status(404).json({ message: "用户不存在" })
-//     }
-
-//     // 不返回密码
-//     const { password: _, ...userWithoutPassword } = user
-//     res.status(200).json(userWithoutPassword)
-//   } catch (error) {
-//     res.status(500).json({ error: "服务器错误，请稍后再试" })
-//   }
-// }
+// 获取当前用户信息控制器
+const getCurrentUser = async (req, res) => {
+  try {
+    res.status(200).json({
+      message: "获取当前用户信息成功",
+      data: req.user,
+    })
+  } catch (error) {
+    res.status(500).json({ error: "服务器错误，请稍后再试" })
+  }
+}
 
 module.exports = {
   registerUser,
   loginUser,
-  // getUserProfile
+  getCurrentUser,
 }

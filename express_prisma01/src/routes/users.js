@@ -4,14 +4,13 @@ const router = express.Router()
 const {
   registerUser,
   loginUser,
-  // getUserProfile
+  getCurrentUser,
 } = require("../controllers/userController")
 const {
   validateUserData,
   validateLoginData,
   checkUserUniqueness,
 } = require("../middlewares/userMiddleware")
-
 // 注册用户路由
 router.post("/signup", validateUserData, checkUserUniqueness, registerUser)
 
@@ -19,6 +18,6 @@ router.post("/signup", validateUserData, checkUserUniqueness, registerUser)
 router.post("/signin", validateLoginData, loginUser)
 
 // 获取用户信息路由
-// router.get("/:id", getUserProfile)
+router.get("/me", getCurrentUser)
 
 module.exports = router

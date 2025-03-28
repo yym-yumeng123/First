@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
 const usersRouter = require("./routes/users")
-
+const { authenticate } = require("./middlewares/authMiddleware")
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -10,6 +10,8 @@ const port = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(authenticate)
 
 // 路由
 app.use("/api/users", usersRouter)
