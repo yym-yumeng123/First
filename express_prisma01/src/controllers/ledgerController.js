@@ -16,6 +16,23 @@ const createLedger = async (req, res) => {
   })
 }
 
+const getLedgers = async (req, res) => {
+  const { user } = req
+  const ledgers = await prisma.ledger.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
+  res.json({
+    message: "账本获取成功",
+    data: ledgers.map(({ userId, ...rest }) => rest),
+  })
+}
+
 module.exports = {
   createLedger,
+  getLedgers,
 }
