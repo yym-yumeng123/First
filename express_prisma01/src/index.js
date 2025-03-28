@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
 const usersRouter = require("./routes/users")
+const ledgerRouter = require("./routes/ledger")
 const { authenticate } = require("./middlewares/authMiddleware")
 const app = express()
 const port = process.env.PORT || 3000
@@ -15,6 +16,7 @@ app.use(authenticate)
 
 // 路由
 app.use("/api/users", usersRouter)
+app.use("/api/ledgers", ledgerRouter)
 
 // 测试路由
 app.get("/", (req, res) => {

@@ -20,4 +20,15 @@ model User {
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  ledgers Ledger[]
+}
+
+model Ledger {
+  id Int @id @default(autoincrement())
+  name String // 账本名称
+  description String? // 账本描述
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 }
