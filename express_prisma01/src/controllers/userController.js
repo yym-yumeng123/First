@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 const prisma = require("../lib/prisma")
 
 // 用户注册控制器
@@ -50,12 +51,13 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: "密码不正确" })
     }
 
-    // 登录成功，返回用户信息（不包含密码）
-    const { password: _, ...userWithoutPassword } = user
+    // 登录成功，返回 token
+    const { id } = user
     res.status(200).json({
       message: "登录成功",
-      user: userWithoutPassword,
+      token: jwt.sign({ userId: id }, process.env.JWT_SECRET, { expiresIn: "2h" }),
     })
+
   } catch (error) {
     res.status(500).json({ error: "服务器错误，请稍后再试" })
   }
